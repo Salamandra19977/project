@@ -1,0 +1,39 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-color: black;
+    font-family: "Press Start 2P", cursive;
+}
+header {
+    color: yellow;
+    text-align: center;
+    margin-top: 3rem;
+}
+main {
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#start {
+    text-decoration: none;
+    color: red;
+    font-size: 4rem;
+    text-shadow: 0 0 0 #fff;
+    animation: rainbow 3s infinite ease-in-out;
+}
+#start:hover {
+    transform: scale(1.2);
+    text-shadow: 0.2rem 0.2rem 0 #fff;
+}
+@keyframes rainbow {
+    0% {
+        color: red;
+    }
+    50% {
+        color: yellow;
+    }
+    100% {
+        color: green;
+    }
+}

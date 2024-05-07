@@ -1,0 +1,62 @@
+let answer = ["яблуко","груша","город","школа","сайт", "браузер", 
+"плагин", "колір", "стиль", "мова", "узор", "сорока"];
+
+let num = Math.floor(1 + Math.random() * 12) 
+console.log(num)
+let progress = 0
+let was = []
+
+$(document).ready(function () {
+    $(".progress").knob({
+        'min':0,
+        'max':5,
+        'angleOffset': -60,
+        'angleArc': 120,
+        'readOnly': true
+    })
+    $(".slideRules").click(function(){
+        $("#rules").slideToggle()
+    })
+    startRebus(num)
+    $("#btnTask1").on('click keypress', function(event) {
+        if (event.type === 'click' || (event.type === 'keypress' && event.which === 13)) {
+            
+        }
+    });
+    $("#btnTask1").focus();
+    $("#btnTask1").on('click keypress', function(event) {
+        if (event.type === 'click' || (event.type === 'keypress' && event.which === 13)) {
+            if($("#inputTask1").val().toLowerCase() == `${answer[num - 1]}`){
+                $("#inputTask1").val("")
+                progress++
+                $(".progress").val(progress).trigger("change")
+                was.push(num)
+                console.log(was)
+                if (progress < 5) {
+                    do {
+                        num = Math.floor(1 + Math.random() * 12) 
+                    }
+                    while (was.includes(num))
+                    console.log(num)
+                    startRebus(num)
+                }
+                else {
+                    $(".img, #btnTask1, #inputTask1").css({
+                        'display': 'none'
+                    })
+                    $("#nextTask").css({
+                        'display':'flex'
+                    })
+                }
+            }
+            else {
+                alertify.error("Try again") 
+            }
+        }
+            
+    })
+});
+
+function startRebus(arg) {
+    $("#picture").attr("src", `rebuses/${arg}.jpg`)
+}
